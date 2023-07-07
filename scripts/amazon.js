@@ -2,7 +2,7 @@
 // this is called a data structure
 // const products= [{
 //     image:'images/products/athletic-cotton-socks-6-pairs.jpg',
-//     id:'Black and Gray Athletic Cotton Socks - 6 Pairs',
+//     name:'Black and Gray Athletic Cotton Socks - 6 Pairs',
 //     rating:{
 //         count:87,
 //         stars:4.5
@@ -13,7 +13,7 @@
 // },
 // {
 //     image:'images/products/intermediate-composite-basketball.jpg',
-//     id:' Intermediate Size Basketball',
+//     name:' Intermediate Size Basketball',
 //     rating:{
 //         count:127,
 //         stars:4
@@ -23,7 +23,7 @@
 // },
 // {
 //     image:'images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg',
-//     id:' Adults Plain Cotton T-Shirt - 2 Pack',
+//     name:' Adults Plain Cotton T-Shirt - 2 Pack',
 //     rating:{
 //         count:56,
 //         stars:4.5
@@ -33,7 +33,7 @@
 // },
 // {
 //     image:'images/products/black-2-slot-toaster.jpg',
-//     id:' 2 slot toaster-Black',
+//     name:' 2 slot toaster-Black',
 //     rating:{
 //         count:2197,
 //         stars:5
@@ -53,8 +53,8 @@ products.forEach((product)=>
             <img class="product-image" src="${product.image}">
             </div>
 
-            <div class="product-id limit-text-to-2-lines">
-            ${product.id}
+            <div class="product-name   limit-text-to-2-lines">
+            ${product.name}
             </div>
 
             <div class="product-rating-container">
@@ -111,15 +111,17 @@ addToCart.forEach((button)=>{
       const productId=button.dataset.productId;
         // dataset give us all the data attached to the html element
         let matchingItem;
+
         cart.forEach((item)=>{
             if(productId===item.productId){
-                matchingItem=item;
+                matchingItem=item;  
                 
             }
-    
+            
+
         });
         if(matchingItem){
-            matchingItem.quantity++
+            matchingItem.quantity++;
         }
         else{
             cart.push({
@@ -127,7 +129,13 @@ addToCart.forEach((button)=>{
                 quantity:1
             })
         }
-    })
-
+    let cartQuantity=0;
+   
+    cart.forEach((item)=>{
+      cartQuantity+=item.quantity;
+    
+    });
+    document.querySelector('.js-quantity').innerHTML=cartQuantity;
+    });   
 });
 
