@@ -69,7 +69,7 @@ products.forEach((product)=>
             </div>
 
             <div class="product-quantity-container">
-            <select>
+            <select class="js-quantity-selector-${product.id}">
                 <option selected value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -85,7 +85,7 @@ products.forEach((product)=>
 
             <div class="product-spacer"></div>
 
-            <div class="added-to-cart">
+            <div class="added-to-cart js-added-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
             </div>
@@ -108,7 +108,8 @@ const addToCart=document.querySelectorAll('.js-add-to-cart'); // we use querySel
 addToCart.forEach((button)=>{
 
     button.addEventListener('click',()=>{
-      const productId=button.dataset.productId;
+    //   const productId=button.dataset.productId;
+      const {productId}=button.dataset; // we used distructing in this because the variable and property got the same name    
         // dataset give us all the data attached to the html element
         let matchingItem;
 
@@ -120,13 +121,22 @@ addToCart.forEach((button)=>{
             
 
         });
+
+        const selectElement=Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
+
+        const addElement= document.querySelector(`.js-added-${productId}`);
+
+        addElement.classList.add('opacity1');
+        console.log(productId);
+        console.log(selectElement);
         if(matchingItem){
             matchingItem.quantity++;
         }
         else{
             cart.push({
-                productId:productId,
-                quantity:1
+                // productId:productId,
+                productID,  // shorthand shotcuts
+                quantity:selectElement
             })
         }
     let cartQuantity=0;
