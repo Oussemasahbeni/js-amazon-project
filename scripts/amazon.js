@@ -124,9 +124,17 @@ addToCart.forEach((button)=>{
 
         const selectElement=Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
 
-        const addElement= document.querySelector(`.js-added-${productId}`);
 
+        
+        const addElement= document.querySelector(`.js-added-${productId}`);
+        let timeoutID;
         addElement.classList.add('opacity1');
+        timeoutID=setTimeout(()=>{
+            addElement.classList.remove('opacity1');
+            clearTimeout(timeoutID);
+
+        },2000);
+        
         console.log(productId);
         console.log(selectElement);
         if(matchingItem){
@@ -135,7 +143,7 @@ addToCart.forEach((button)=>{
         else{
             cart.push({
                 // productId:productId,
-                productID,  // shorthand shotcuts
+                productId,  // shorthand shotcuts
                 quantity:selectElement
             })
         }
