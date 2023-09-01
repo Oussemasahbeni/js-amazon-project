@@ -105,6 +105,7 @@ productsGrid.innerHTML=productsHtml;
 
 const addToCart=document.querySelectorAll('.js-add-to-cart'); // we use querySelectorAll cause we have multiple add buttons
 
+
 addToCart.forEach((button)=>{
 
     button.addEventListener('click',()=>{
@@ -118,8 +119,6 @@ addToCart.forEach((button)=>{
                 matchingItem=item;  
                 
             }
-            
-
         });
 
         const selectElement=Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
@@ -156,4 +155,3 @@ addToCart.forEach((button)=>{
     document.querySelector('.js-quantity').innerHTML=cartQuantity;
     });   
 });
-
